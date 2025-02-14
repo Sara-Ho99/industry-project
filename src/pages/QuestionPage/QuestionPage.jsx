@@ -6,7 +6,10 @@ import "./QuestionPage.scss";
 import Header from "../../components/Header/Header";
 
 const QuestionPage = () => {
+  console.log("question page reloaded");
   const { role, level } = useParams();
+
+  const [selectedAnswer, setSelectedAnswer] = useState(null);
 
   const [questions, setQuestions] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -31,6 +34,7 @@ const QuestionPage = () => {
   const goToNextQuestion = () => {
     if (currentIndex < questions.length - 1) {
       setCurrentIndex(currentIndex + 1);
+      setSelectedAnswer(null);
     }
   };
 
@@ -38,10 +42,22 @@ const QuestionPage = () => {
     return <div>No questions available for this role/level.</div>;
   }
 
+  const { question, correct_answer, incorrect_answers, explanation, link } =
+    questions[currentIndex];
+
+  const options = [correct_answer, ...incorrect_answers].sort(
+    () => Math.random() - 0.5
+  );
+
   return (
-    <div>
+    <div className="question-page">
       <Header />
-      <QuestionCard questionData={questions[currentIndex]} />
+      <QuestionCard
+        selectedAnswer={selectedAnswer}
+        setSelectedAnswer={setSelectedAnswer}
+        questionData={questions[currentIndex]}
+        options={options}
+      />
       <button onClick={goToNextQuestion} className="next-button">
         Next Question
       </button>
