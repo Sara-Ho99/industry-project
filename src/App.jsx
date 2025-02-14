@@ -4,21 +4,23 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import ModulesPage from "./pages/modulesPage/modulesPage";
 import MyQuestionPage from "./pages/QuestionPage/QuestionPage";
 import HomePage from "./pages/HomePage/HomePage";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+
 // import ModulesPage from "./pages/modulesPage/modulesPage";
 import QuestionPage from "./pages/QuestionPage/QuestionPage";
 
 function App() {
   // "role" can be passed to the QuestionPage as URL params
-  const [role, setRole] = useState("beginner");
+  const [role, setRole] = useState("");
   console.log(role);
+  const [level, setLevel] = useState("");
+  console.log(level);
 
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<HomePage setRole={setRole} />} />
-        <Route path="/modules" element={<ModulesPage />} />
-        <Route path="/easy/:questionId" element={<MyQuestionPage />} />
+        <Route path="/modules" element={<ModulesPage setLevel={setLevel} />} />
+        <Route path="/easy/:questionId" element={<QuestionPage />} />
         <Route
           path="/intermediate/:questionId"
           element={<Navigate to="/easy/:questionId" />}

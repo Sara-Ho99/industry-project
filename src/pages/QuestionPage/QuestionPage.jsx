@@ -5,16 +5,19 @@ import { useParams } from "react-router-dom";
 import "./QuestionPage.scss";
 
 const QuestionPage = () => {
-  const { role, level, id } = useParams(); 
-  const [questions, setQuestions] = useState([]);
-  const [currentIndex, setCurrentIndex] = useState(0);  
+  const { role, level, id } = useParams();
 
-  const baseUrl = "http://localhost:8010"; 
+  const [questions, setQuestions] = useState([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const baseUrl = "http://localhost:8010";
 
   useEffect(() => {
     const fetchQuestions = async () => {
       try {
-        const response = await axios.get(`${baseUrl}/quiz/role/${role}/level/${level}/questionId/${id}`);
+        const response = await axios.get(
+          `${baseUrl}/quiz/role/${role}/level/${level}/questionId/${id}`
+        );
         setQuestions(response.data);
       } catch (error) {
         console.error(error);
@@ -26,7 +29,7 @@ const QuestionPage = () => {
 
   const goToNextQuestion = () => {
     if (currentIndex < questions.length - 1) {
-      setCurrentIndex(currentIndex + 1); 
+      setCurrentIndex(currentIndex + 1);
     }
   };
 
@@ -36,17 +39,11 @@ const QuestionPage = () => {
 
   return (
     <div>
-
       <QuestionCard questionData={questions[currentIndex]} />
-      
-      <button onClick={goToNextQuestion}>
-        Next Question
-      </button>
 
+      <button onClick={goToNextQuestion}>Next Question</button>
     </div>
   );
 };
 
 export default QuestionPage;
-
-
