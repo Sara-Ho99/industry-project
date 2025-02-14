@@ -1,5 +1,6 @@
 import "./QuestionCard.scss";
 import React, { useState, useEffect } from "react";
+import lightbulbIcon from "../../assets/lightbulb.svg";
 
 const QuestionCard = ({ questionData }) => {
   const [selectedAnswer, setSelectedAnswer] = useState(null);
@@ -46,7 +47,15 @@ const QuestionCard = ({ questionData }) => {
         ))}
       </ul>
       <div className="quiz-explanation">
-        <h3>Explanation</h3>
+        <h3 className="quiz-explanation__title">
+          {" "}
+          <img
+            src={lightbulbIcon}
+            alt="Lightbulb icon"
+            className="lightbulb-icon"
+          />
+          Explanation
+        </h3>
         <p>{explanation || "No explanation available."}</p>
         {link && (
           <p>
