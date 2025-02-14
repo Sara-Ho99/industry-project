@@ -1,13 +1,14 @@
 import QuestionCard from "../../components/QuestionCard/QuestionCard";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import "./QuestionPage.scss";
 import Header from "../../components/Header/Header";
 
 const QuestionPage = () => {
   console.log("question page reloaded");
   const { role, level } = useParams();
+  const navigate = useNavigate();
 
   const [selectedAnswer, setSelectedAnswer] = useState(null);
 
@@ -35,6 +36,8 @@ const QuestionPage = () => {
     if (currentIndex < questions.length - 1) {
       setCurrentIndex(currentIndex + 1);
       setSelectedAnswer(null);
+    } else {
+      navigate("/end");
     }
   };
 

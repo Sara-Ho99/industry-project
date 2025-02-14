@@ -15,7 +15,7 @@ function Header() {
           <p className="header__score-number">{score}</p>
         </div>
       </div>
-      <Link to={"/"}>
+      <Link to={"/modules"}>
         <img src={homeIcon} className="header__home" />
       </Link>
     </header>
