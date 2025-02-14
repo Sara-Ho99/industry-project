@@ -1,0 +1,35 @@
+.home-page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4rem;
+  gap: 1.5rem;
+  background-color: #005fb8;
+
+  &__title {
+    font-size: 4rem;
+    color: #fff;
+  }
+
+  &__subtitle {
+    font-size: 2rem;
+    color: #fff;
+  }
+
+  &__button-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+  &__button {
+    width: 100%;
+    color: #005fb8;
+    background-color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 5rem;
+    border: none;
+  }
+}

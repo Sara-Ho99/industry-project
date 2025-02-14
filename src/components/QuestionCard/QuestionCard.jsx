@@ -1,18 +1,17 @@
 import "./QuestionCard.scss";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
-const QuestionCard = ({ questionData, onAnswerSelect }) => {
+const QuestionCard = ({ questionData }) => {
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [isCorrect, setIsCorrect] = useState(null);
 
   if (!questionData) {
-    return <div>Loading question...</div>;
+    return <div className="loading-message">Loading question...</div>;
   }
 
   const { question, correct_answer, incorrect_answers, explanation, link } =
     questionData;
 
-  // Combine and shuffle options
   const options = [correct_answer, ...incorrect_answers].sort(
     () => Math.random() - 0.5
   );
@@ -20,9 +19,7 @@ const QuestionCard = ({ questionData, onAnswerSelect }) => {
   const handleAnswerClick = (answer) => {
     if (selectedAnswer === null) {
       setSelectedAnswer(answer);
-      const correct = answer === correct_answer;
-      setIsCorrect(correct);
-      onAnswerSelect(correct);
+      setIsCorrect(answer === correct_answer);
     }
   };
 
@@ -49,11 +46,10 @@ const QuestionCard = ({ questionData, onAnswerSelect }) => {
         ))}
       </ul>
       <div className="quiz-explanation">
-        <h3>💡 Explanation</h3>
+        <h3>Explanation</h3>
         <p>{explanation || "No explanation available."}</p>
         {link && (
           <p>
-            🔗{" "}
             <a href={link} target="_blank" rel="noopener noreferrer">
               Additional Resources
             </a>
