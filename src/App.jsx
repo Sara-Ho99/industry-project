@@ -4,17 +4,18 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import ModulesPage from "./pages/modulesPage/modulesPage";
 import MyQuestionPage from "./pages/QuestionPage/QuestionPage";
 import HomePage from "./pages/HomePage/HomePage";
-import EndPage from "./pages/EndPage/EndPage"
+import EndPage from "./pages/EndPage/EndPage";
 
 // import ModulesPage from "./pages/modulesPage/modulesPage";
 import QuestionPage from "./pages/QuestionPage/QuestionPage";
 
 function App() {
   // "role" can be passed to the QuestionPage as URL params
-  const [role, setRole] = useState("");
+  const [role, setRole] = useState("beginner");
   console.log(role);
   const [level, setLevel] = useState("");
   console.log(level);
+  const [score, setScore] = useState(0);
 
   return (
     <BrowserRouter>
@@ -23,10 +24,18 @@ function App() {
         <Route
           path="/modules"
           element={
-            <ModulesPage role={role} setLevel={setLevel} level={level} />
+            <ModulesPage
+              score={score}
+              role={role}
+              setLevel={setLevel}
+              level={level}
+            />
           }
         />
-        <Route path="/easy/:questionId" element={<QuestionPage />} />
+        <Route
+          path="/easy/:questionId"
+          element={<QuestionPage score={score} setScore={setScore} />}
+        />
         <Route
           path="/intermediate/:questionId"
           element={<Navigate to="/easy/:questionId" />}
@@ -36,8 +45,11 @@ function App() {
           element={<Navigate to="/easy/:questionId" />}
         />
         {/* <Route path="/" element={<ModulesPage />} /> */}
-        <Route path="/quiz/:role/:level/:id" element={<QuestionPage />} />
-        <Route path="/end" element={<EndPage/>}/>
+        <Route
+          path="/quiz/:role/:level/:id"
+          element={<QuestionPage score={score} setScore={setScore} />}
+        />
+        <Route path="/end" element={<EndPage />} />
       </Routes>
     </BrowserRouter>
   );

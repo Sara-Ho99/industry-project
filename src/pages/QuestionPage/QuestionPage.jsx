@@ -13,7 +13,7 @@ const shuffleArray = (array) => {
   return array;
 };
 
-const QuestionPage = () => {
+const QuestionPage = ({ setScore, score }) => {
   console.log("question page reloaded");
   const { role, level } = useParams();
   const navigate = useNavigate();
@@ -64,8 +64,9 @@ const QuestionPage = () => {
 
   return (
     <div className="question-page">
-      <Header />
+      <Header score={score} />
       <QuestionCard
+        setScore={setScore}
         selectedAnswer={selectedAnswer}
         setSelectedAnswer={setSelectedAnswer}
         questionData={questions[currentIndex]}
