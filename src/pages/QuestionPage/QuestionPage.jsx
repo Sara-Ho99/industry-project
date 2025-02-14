@@ -40,7 +40,6 @@ const QuestionPage = () => {
   return (
     <div>
       <QuestionCard questionData={questions[currentIndex]} />
-
       <button onClick={goToNextQuestion}>Next Question</button>
     </div>
   );
