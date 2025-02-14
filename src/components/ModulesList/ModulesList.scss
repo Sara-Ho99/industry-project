@@ -1,0 +1,27 @@
+.modules {
+  padding: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 1.2rem;
+
+  &__option {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    padding: 1rem;
+    border: 1px solid black;
+    border-radius: 0.6rem;
+    border-left: 2rem solid black;
+    box-shadow: 9px 9px 9px 1px rgba(0, 0, 0, 0.2);
+    &--green {
+      border-left-color: green;
+    }
+    &--orange {
+      border-left-color: orange;
+    }
+    &--red {
+      border-left-color: red;
+    }
+  }
+}
