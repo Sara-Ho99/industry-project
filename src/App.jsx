@@ -19,7 +19,12 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<HomePage setRole={setRole} />} />
-        <Route path="/modules" element={<ModulesPage setLevel={setLevel} />} />
+        <Route
+          path="/modules"
+          element={
+            <ModulesPage role={role} setLevel={setLevel} level={level} />
+          }
+        />
         <Route path="/easy/:questionId" element={<QuestionPage />} />
         <Route
           path="/intermediate/:questionId"

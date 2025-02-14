@@ -2,13 +2,13 @@ import "./ModulesList.scss";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
-function ModulesList({ setLevel }) {
+function ModulesList({ setLevel, level, role }) {
   const [questionId, setQuestionId] = useState(1);
   return (
     <ul className="modules">
       <li>
         <Link
-          to={`/quiz/beginner/easy/${questionId}`}
+          to={`/quiz/${role}/easy/${questionId}`}
           className="modules__option modules__option--green"
           onClick={() => setLevel("easy")}
         >
@@ -21,7 +21,7 @@ function ModulesList({ setLevel }) {
       </li>
       <li>
         <Link
-          to={`/intermediate/${questionId}`}
+          to={`/quiz/${role}/intermediate/${questionId}`}
           className="modules__option modules__option--orange"
           onClick={() => setLevel("intermediate")}
         >
@@ -34,7 +34,7 @@ function ModulesList({ setLevel }) {
       </li>
       <li>
         <Link
-          to={`/advanced/${questionId}`}
+          to={`/quiz/${role}/advanced/${questionId}`}
           className="modules__option modules__option--red"
           onClick={() => setLevel("advanced")}
         >
