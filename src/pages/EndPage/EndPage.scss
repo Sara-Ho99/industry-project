@@ -1,0 +1,31 @@
+.end-page{
+    height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4rem;
+  gap: 1.5rem;
+  background-color: #005fb8;
+
+  &__title {
+    font-size: 3rem;
+    color: #fff;
+  }
+
+  &__subtitle {
+    font-size: 1.5rem;
+    color: #fff;
+    text-align: center;
+  }
+
+  &__button {
+    width: 100%;
+    color: #005fb8;
+    background-color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 5rem;
+    border: none;
+    cursor: pointer;
+  }
+}
