@@ -1,5 +1,6 @@
 import "./QuestionCard.scss";
 import React, { useState, useEffect } from "react";
+import lightbulbIcon from "../../assets/lightbulb.svg";
 
 const QuestionCard = ({
   questionData,
@@ -46,21 +47,25 @@ const QuestionCard = ({
           </li>
         ))}
       </ul>
-      {selectedAnswer ? (
-        <div className="quiz-explanation">
-          <h3>Explanation</h3>
-          <p>{explanation || "No explanation available."}</p>
-          {link && (
-            <p>
-              <a href={link} target="_blank" rel="noopener noreferrer">
-                Additional Resources
-              </a>
-            </p>
-          )}
-        </div>
-      ) : (
-        <></>
-      )}
+      <div className="quiz-explanation">
+        <h3 className="quiz-explanation__title">
+          {" "}
+          <img
+            src={lightbulbIcon}
+            alt="Lightbulb icon"
+            className="lightbulb-icon"
+          />
+          Explanation
+        </h3>
+        <p>{explanation || "No explanation available."}</p>
+        {link && (
+          <p>
+            <a href={link} target="_blank" rel="noopener noreferrer">
+              Additional Resources
+            </a>
+          </p>
+        )}
+      </div>
     </section>
   );
 };
