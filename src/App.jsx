@@ -4,6 +4,9 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import ModulesPage from "./pages/modulesPage/modulesPage";
 import MyQuestionPage from "./pages/QuestionPage/QuestionPage";
 import HomePage from "./pages/HomePage/HomePage";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+// import ModulesPage from "./pages/modulesPage/modulesPage";
+import QuestionPage from "./pages/QuestionPage/QuestionPage";
 
 function App() {
   // "role" can be passed to the QuestionPage as URL params
@@ -24,6 +27,8 @@ function App() {
           path="/advanced/:questionId"
           element={<Navigate to="/easy/:questionId" />}
         />
+        {/* <Route path="/" element={<ModulesPage />} /> */}
+        <Route path="/quiz/:role/:level/:id" element={<QuestionPage />} />
       </Routes>
     </BrowserRouter>
   );
