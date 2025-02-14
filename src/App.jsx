@@ -4,7 +4,6 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import ModulesPage from "./pages/modulesPage/modulesPage";
 import MyQuestionPage from "./pages/QuestionPage/QuestionPage";
 import HomePage from "./pages/HomePage/HomePage";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 // import ModulesPage from "./pages/modulesPage/modulesPage";
 import QuestionPage from "./pages/QuestionPage/QuestionPage";
 
