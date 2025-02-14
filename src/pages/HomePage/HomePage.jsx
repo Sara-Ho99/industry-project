@@ -11,7 +11,7 @@ function HomePage({ setRole }) {
       <h1 className="home-page__title">AI Hub</h1>
       <h2 className="home-page__subtitle">I am a ...</h2>
       <div className="home-page__button-container">
-        <Link>
+        <Link to="/modules">
           <button
             className="home-page__button"
             onClick={() => HandleOnClick("beginner")}
@@ -20,7 +20,7 @@ function HomePage({ setRole }) {
           </button>
         </Link>
 
-        <Link>
+        <Link to="/modules">
           <button
             className="home-page__button"
             onClick={() => HandleOnClick("student")}
@@ -29,7 +29,7 @@ function HomePage({ setRole }) {
           </button>
         </Link>
 
-        <Link>
+        <Link to="/modules">
           <button
             className="home-page__button"
             onClick={() => HandleOnClick("developer")}
@@ -38,7 +38,7 @@ function HomePage({ setRole }) {
           </button>
         </Link>
 
-        <Link>
+        <Link to="/modules">
           <button
             className="home-page__button"
             onClick={() => HandleOnClick("manager")}
@@ -47,7 +47,7 @@ function HomePage({ setRole }) {
           </button>
         </Link>
 
-        <Link>
+        <Link to="/modules">
           <button
             className="home-page__button"
             onClick={() => HandleOnClick("business owner")}
