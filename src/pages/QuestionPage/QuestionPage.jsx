@@ -42,7 +42,9 @@ const QuestionPage = () => {
     <div>
       <Header />
       <QuestionCard questionData={questions[currentIndex]} />
-      <button onClick={goToNextQuestion}>Next Question</button>
+      <button onClick={goToNextQuestion} className="next-button">
+        Next Question
+      </button>
     </div>
   );
 };
