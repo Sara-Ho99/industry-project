@@ -1,9 +1,10 @@
 .modules {
-  //   background-color: rgb(182, 161, 202);
-  height: 80%;
+  padding: 1rem 0;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  justify-content: space-around;
+  gap: 1.2rem;
+
   &__option {
     display: flex;
     flex-direction: column;
@@ -11,11 +12,16 @@
     padding: 1rem;
     border: 1px solid black;
     border-radius: 0.6rem;
-    border-left: 2rem solid green;
+    border-left: 2rem solid black;
     box-shadow: 9px 9px 9px 1px rgba(0, 0, 0, 0.2);
-  }
-  &__title {
-  }
-  &__description {
+    &--green {
+      border-left-color: green;
+    }
+    &--orange {
+      border-left-color: orange;
+    }
+    &--red {
+      border-left-color: red;
+    }
   }
 }
