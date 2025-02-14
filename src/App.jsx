@@ -9,15 +9,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         {/* <Route path="/" element={<ModulesPage />} /> */}
-        <Route path="/easy/:questionId" element={<QuestionPage />} />
-        <Route
-          path="/intermediate/:questionId"
-          element={<Navigate to="/easy/:questionId" />}
-        />
-        <Route
-          path="/advanced/:questionId"
-          element={<Navigate to="/easy/:questionId" />}
-        />
+        <Route path="/quiz/:role/:level/:id" element={<QuestionPage />} />
       </Routes>
     </BrowserRouter>
     </>

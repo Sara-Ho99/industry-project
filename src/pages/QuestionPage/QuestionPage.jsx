@@ -4,8 +4,8 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import "./QuestionPage.scss";
 
-const QuestionsPage = () => {
-  const { role, level } = useParams(); 
+const QuestionPage = () => {
+  const { role, level, id } = useParams(); 
   const [questions, setQuestions] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);  
 
@@ -14,7 +14,7 @@ const QuestionsPage = () => {
   useEffect(() => {
     const fetchQuestions = async () => {
       try {
-        const response = await axios.get(`${baseUrl}/quiz/role/${role}/level/${level}`);
+        const response = await axios.get(`${baseUrl}/quiz/role/${role}/level/${level}/questionId/${id}`);
         setQuestions(response.data);
       } catch (error) {
         console.error(error);
@@ -22,7 +22,7 @@ const QuestionsPage = () => {
     };
 
     fetchQuestions();
-  }, [role, level]);
+  }, [role, level, id]);
 
   const goToNextQuestion = () => {
     if (currentIndex < questions.length - 1) {
@@ -42,11 +42,11 @@ const QuestionsPage = () => {
       <button onClick={goToNextQuestion}>
         Next Question
       </button>
-      
+
     </div>
   );
 };
 
-export default QuestionsPage;
+export default QuestionPage;
 
 
