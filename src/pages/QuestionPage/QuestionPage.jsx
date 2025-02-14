@@ -1,8 +1,10 @@
 import QuestionCard from "../../components/QuestionCard/QuestionCard";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { useParams } from "react-router-dom";
 import "./QuestionPage.scss";
 
-const questions = [
+const fallbackQuestions = [
   {
     question: "What does AI actually mean?",
     options: [
@@ -25,35 +27,61 @@ const questions = [
 ];
 
 const QuestionPage = () => {
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [score, setScore] = useState(0);
-  const [showNext, setShowNext] = useState(false);
+  const { role, level, id } = useParams();
+  const [questions, setQuestions] = useState([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  const handleAnswer = (isCorrect) => {
-    if (isCorrect) setScore(score + 1);
-    setShowNext(true);
-  };
+  const baseUrl = "http://localhost:8010";
 
-  const nextQuestion = () => {
-    if (currentQuestionIndex < questions.length - 1) {
-      setCurrentQuestionIndex(currentQuestionIndex + 1);
-      setShowNext(false);
-    } else {
-      alert(`Quiz finished! Your score: ${score}/${questions.length}`);
+  useEffect(() => {
+    const fetchQuestions = async () => {
+      try {
+        const response = await axios.get(
+          `${baseUrl}/quiz/role/${role}/level/${level}/questionId/${id}`
+        );
+        setQuestions(response.data);
+      } catch (error) {
+        console.error("Error fetching questions:", error);
+        setQuestions(fallbackQuestions);
+        setError("Failed to fetch questions. Using sample data.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchQuestions();
+  }, [role, level, id]);
+
+  const goToNextQuestion = () => {
+    if (currentIndex < questions.length - 1) {
+      setCurrentIndex(currentIndex + 1);
     }
   };
+
+  if (questions.length === 0) {
+    return <div>No questions available for this role/level.</div>;
+  }
+
+  if (loading) return <div>Loading questions...</div>;
+
   return (
-    <section className="question-page">
-      <QuestionCard
-        questionData={questions[currentQuestionIndex]}
-        onAnswerSelect={handleAnswer}
-      />
-      {showNext && (
-        <button className="next-button" onClick={nextQuestion}>
-          Next Question
-        </button>
+    <div className="question-page">
+      {error && <p className="error">{error}</p>}
+      {questions.length > 0 ? (
+        <>
+          <QuestionCard questionData={questions[currentIndex]} />
+          {currentIndex < questions.length - 1 && (
+            <button className="next-button" onClick={goToNextQuestion}>
+              Next Question
+            </button>
+          )}
+        </>
+      ) : (
+        <div>No questions available for this role/level.</div>
       )}
-    </section>
+    </div>
   );
 };
 

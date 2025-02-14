@@ -1,12 +1,17 @@
 import "./App.scss";
-import QuestionPage from "./pages/QuestionPage";
-console.log(QuestionPage);
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+// import ModulesPage from "./pages/modulesPage/modulesPage";
+import QuestionPage from "./pages/QuestionPage/QuestionPage";
 
 function App() {
   return (
     <>
-      <h1>This is a quiz app for AI basics</h1>
-      <QuestionPage />
+      <BrowserRouter>
+        <Routes>
+          {/* <Route path="/" element={<ModulesPage />} /> */}
+          <Route path="/quiz/:role/:level/:id" element={<QuestionPage />} />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }

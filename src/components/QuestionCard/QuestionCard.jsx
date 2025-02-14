@@ -1,51 +1,64 @@
 import "./QuestionCard.scss";
-import React from "react";
+import React, { useState } from "react";
 
-const QuestionCard = () => {
+const QuestionCard = ({ questionData, onAnswerSelect }) => {
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [isCorrect, setIsCorrect] = useState(null);
 
-  const answers = [
-    "A robot that can do everything for you",
-    "A supercomputer that knows everything", // Correct Answer
-    "A way for computers to learn and help with tasks",
-    "Just another tech buzzword",
-  ];
+  if (!questionData) {
+    return <div>Loading question...</div>;
+  }
 
-  const correctAnswerIndex = 1; // Index of the correct answer
+  const { question, correct_answer, incorrect_answers, explanation, link } =
+    questionData;
 
-  const handleAnswerClick = (index) => {
-    setSelectedAnswer(index);
-    setIsCorrect(index === correctAnswerIndex); //  True if correct, ❌ False if incorrect
+  // Combine and shuffle options
+  const options = [correct_answer, ...incorrect_answers].sort(
+    () => Math.random() - 0.5
+  );
+
+  const handleAnswerClick = (answer) => {
+    if (selectedAnswer === null) {
+      setSelectedAnswer(answer);
+      const correct = answer === correct_answer;
+      setIsCorrect(correct);
+      onAnswerSelect(correct);
+    }
   };
+
   return (
     <section className="quiz-section">
-      <div className="quiz-options">
-        <h2 className="quiz-options__tittle">Question</h2>
-        <ul className="quiz-options__answer-list">
-          {answers.map((answer, index) => (
-            <li
-              key={index}
-              className={`quiz-options__answer ${
-                selectedAnswer !== null
-                  ? index === correctAnswerIndex
-                    ? "quiz-options__answer--correct"
-                    : index === selectedAnswer
-                    ? "quiz-options__answer--wrong"
-                    : ""
+      <h2 className="quiz-question">{question}</h2>
+      <ul className="quiz-options">
+        {options.map((option, index) => (
+          <li
+            key={index}
+            className={`quiz-option ${
+              selectedAnswer !== null
+                ? option === correct_answer
+                  ? "quiz-option--correct"
+                  : option === selectedAnswer
+                  ? "quiz-option--wrong"
                   : ""
-              }`}
-              onClick={() => handleAnswerClick(index)}
-            >
-              {answer}
-            </li>
-          ))}
-        </ul>
-      </div>
-      <div className="quiz-explanations">
-        <h3 className="quiz-explanations__tittle"> 💡 Explanation</h3>
-        <p className="quiz-explanations__text">explanation...</p>
-        <p className="quiz-explanations__additional"> 🔗Additonal Resources</p>
+                : ""
+            }`}
+            onClick={() => handleAnswerClick(option)}
+          >
+            {option}
+          </li>
+        ))}
+      </ul>
+      <div className="quiz-explanation">
+        <h3>💡 Explanation</h3>
+        <p>{explanation || "No explanation available."}</p>
+        {link && (
+          <p>
+            🔗{" "}
+            <a href={link} target="_blank" rel="noopener noreferrer">
+              Additional Resources
+            </a>
+          </p>
+        )}
       </div>
     </section>
   );
