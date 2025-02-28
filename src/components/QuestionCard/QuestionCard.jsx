@@ -10,6 +10,7 @@ const QuestionCard = ({
   setScore,
 }) => {
   console.log("card reloaded");
+  console.log(options);
 
   const [isCorrect, setIsCorrect] = useState(null);
 
