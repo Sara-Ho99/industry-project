@@ -6,9 +6,9 @@ _How Might We Support Microsoft Customers in Adapting to AI Innovations?_
 
 _Right now, AI can feel overwhelming for a lot of people. It’s new, evolving fast, and often comes wrapped in complex terminology._
 
-## Solution
+## AI Trivia Hub
 
-**AI Trivia Hub – a gamified, interactive learning tool**
+_**AI Trivia Hub – a gamified, interactive learning tool**_
 
 ### Why Trivia?
 
