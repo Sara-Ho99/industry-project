@@ -4,8 +4,7 @@ import homeIcon from "../../assets/home.svg";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-function Header() {
-  const [score, setScore] = useState(0);
+function Header({ score }) {
   return (
     <header className="header">
       <div className="header__left">

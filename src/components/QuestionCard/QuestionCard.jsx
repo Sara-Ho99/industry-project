@@ -7,6 +7,7 @@ const QuestionCard = ({
   options,
   setSelectedAnswer,
   selectedAnswer,
+  setScore,
 }) => {
   console.log("card reloaded");
   console.log(options);
@@ -24,6 +25,9 @@ const QuestionCard = ({
     if (selectedAnswer === null) {
       setSelectedAnswer(answer);
       setIsCorrect(answer === correct_answer);
+      if (answer === correct_answer) {
+        setScore((prev) => prev + 5);
+      }
     }
   };
   return (
